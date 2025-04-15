@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemilu - Pilih Calon</title>
+    <script>
+        function submitVote() {
+            var nama = document.getElementById("nama").value;
+            var email = document.getElementById("email").value;
+            var calonId = document.querySelector('input[name="calon"]:checked').value;
+
+            if (!nama || !email || !calonId) {
+                alert("Semua data harus diisi!");
+                return;
+            }
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert(this.responseText);
+                }
+            };
+            xmlhttp.open("POST", "submit_vote.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("nama=" + nama + "&email=" + email + "&calon_id=" + calonId);
+        }
+    </script>
+</head>
+<body>
+    <h1>Pemilu - Pilih Calon</h1>
+    <form>
+        <label for="nama">Nama Pemilih:</label><br>
+        <input type="text" id="nama" name="nama"><br><br>
+
+        <label for="email">Email (untuk verifikasi):</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <h3>Pilih Calon:</h3>
+        <input type="radio" id="calon1" name="calon" value="1"> Calon 1: A<br>
+        <input type="radio" id="calon2" name="calon" value="2"> Calon 2: B<br>
+        <input type="radio" id="calon3" name="calon" value="3"> Calon 3: C<br>
+        <input type="radio" id="calon4" name="calon" value="4"> Calon 4: D<br>
+        <input type="radio" id="calon5" name="calon" value="5"> Calon 5: E<br><br>
+
+        <button type="button" onclick="submitVote()">Kirim Suara</button>
+    </form>
+</body>
+</html>

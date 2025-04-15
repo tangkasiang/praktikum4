@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grafik Survei</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        fetch('grafik_data.php') // pakai grafik_data.php milikmu
+          .then(response => response.json())
+          .then(data => {
+            var chartData = google.visualization.arrayToDataTable(data);
+
+            var options = {
+              title: 'Hasil Survei Pilihan',
+              chartArea: {width: '50%'},
+              hAxis: {
+                title: 'Jumlah Suara',
+                minValue: 0
+              },
+              vAxis: {
+                title: 'Pilihan'
+              }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+            chart.draw(chartData, options);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Grafik Hasil Survei</h2>
+    <div id="chart_div" style="width: 800px; height: 500px;"></div>
+    <br>
+    <button onclick="window.location.href='index.html'">Kembali ke Form Survei</button>
+
+  </body>
+</html>

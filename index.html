@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Survei</title>
+</head>
+<body>
+  <h2>Form Survei</h2>
+  <form action="simpan_survei.php" method="POST">
+    Nama: <input type="text" name="nama" required><br><br>
+    Usia: <input type="number" name="usia" required><br><br>
+    Pilihan:
+    <select name="pilihan" required>
+      <option value="A">Pilihan A</option>
+      <option value="B">Pilihan B</option>
+      <option value="C">Pilihan C</option>
+      <option value="D">Pilihan D</option>
+      <option value="E">Pilihan E</option>
+    </select><br><br>
+    <button type="submit">Kirim</button>
+  </form>
+  <br>
+  <a href="grafik.html">Lihat Grafik Hasil Survei</a>
+</body>
+</html>
